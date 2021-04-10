@@ -13,6 +13,7 @@ const PaymentButton = ({ order }) => {
   const handlePayment = async () => {
     const stripe = await stripePromise;
     const token = await getToken();
+
     const response = await fetch(`${API_DOMAIN}/orders`, {
       method: 'POST',
       body: JSON.stringify({ order }),
@@ -22,6 +23,7 @@ const PaymentButton = ({ order }) => {
       }
     });
     const session = await response.json();
+    
     const result = await stripe.redirectToCheckout({
       sessionId: session.id
     });

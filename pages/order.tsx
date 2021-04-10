@@ -1,6 +1,6 @@
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 
 import { getDepartments } from '@/actions/fetch-departments';
 import PaymentButton from '@/components/buttons/PaymentButton';
@@ -10,10 +10,24 @@ import OrderResumeTable from '@/components/tables/OrderResumeTable';
 import OrderTable from '@/components/tables/OrderTable';
 import AuthContex from '@/context/AuthContext';
 import { initializeApolloClient } from '@/lib/apollo-client';
+import IPaymentOrder from '@/models/IPaymentOrder';
 
 export default function OrderPage({ departments }) {
   const { user, useSession } = useContext(AuthContex);
   const [order, setOrder] = useState([]);
+  
+  const getOrder = (): Array<IPaymentOrder> => {
+    try {
+      return JSON.parse(localStorage.getItem('order')) || [];
+    } catch (error) { }
+
+    return [];
+  };
+
+  useEffect(()=>{
+    setOrder(getOrder)
+  },[])
+
 
   useSession();
 

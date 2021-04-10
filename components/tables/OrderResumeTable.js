@@ -30,12 +30,12 @@ const OrderResumeTable = ({ order }) => {
             <tr><td><br /></td></tr>
             <tr>
               <td>Subtotal</td>
-              <td>{formatPrice(buySummary.subtotal)}</td>
+              <td>{formatPrice('MXN',buySummary.subtotal)}</td>
             </tr>
             <tr><td><span></span></td></tr>
             <tr>
               <td>Envío</td>
-              <td>{formatPrice(buySummary.delivery_price)}</td>
+              <td>{formatPrice('MXN', buySummary.delivery_price)}</td>
             </tr>
             <tr><td><br /></td></tr>
           </tbody>
@@ -43,7 +43,7 @@ const OrderResumeTable = ({ order }) => {
           <tfoot className="md:font-bold">
             <tr>
               <td>Total</td>
-              <td>{formatPrice(buySummary.total)}</td>
+              <td>{formatPrice('MXN', buySummary.total)}</td>
             </tr>
           </tfoot>
         </table >

@@ -12,14 +12,18 @@ export default function SuccessPaymentPage() {
   useSession();
 
   useEffect(() => {
+    const path = router.asPath
+    const i = path.search("=")
+    const sessionId = path.slice(i+1)
+
     const confirmOrder = async () => {
       const order = await fetch(`${API_DOMAIN}/orders/confirm`, {
         method: 'POST',
-        body: JSON.stringify({ checkout_session: router.query.session_id }),
+        body: JSON.stringify({ checkout_session: sessionId }),
         headers: { 'Content-Type': 'application/json' }
       });
     };
-
+    
     confirmOrder();
     router.push('/');
   }, []);
