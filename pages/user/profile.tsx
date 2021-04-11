@@ -206,15 +206,6 @@ export default function UserProfilePage({ departments, referer }) {
                 <span>Mis direcciones</span>
               </a>
             </Link>
-
-            <Link href="/user/payment-methods">
-              <a className={styles.tailwind.mainContent.menu.item.container}>
-                <span className={styles.tailwind.mainContent.menu.item.icon}>
-                  <CreditCard />
-                </span>
-                <span>Mis métodos de pago</span>
-              </a>
-            </Link>
           </div>
 
           <Link href="/">

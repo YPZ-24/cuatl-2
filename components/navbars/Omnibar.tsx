@@ -154,7 +154,7 @@ const styles = {
 
 export default function Omnibar({ menuEntries }) {
   const { user } = useContext(AuthContext);
-  const { countProducts } = useContext(OrderContext);
+  const { order } = useContext(OrderContext);
   const [isMenuVisible, setIsMenuVisible] = useState<boolean>(false);
 
   return (
@@ -196,7 +196,7 @@ export default function Omnibar({ menuEntries }) {
                 className={classes.linkGroup.bag.itemsCounter}
                 style={styles.itemsCounter}
               >
-                {countProducts()}
+                {order.length}
               </div>
             </a>
 

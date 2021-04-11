@@ -4,14 +4,7 @@ import { X } from 'react-feather';
 import colors from '@/data/colors.json';
 import getMediaSource from '@/utils/get-media-source';
 
-const OrderTable = ({ order }) => {
-  const removeProduct = (itemNumber) => {
-    const activeOrder = getOrder();
-    const _ = activeOrder.splice(itemNumber, 1);
-
-    setLSOrder(activeOrder);
-    setOrder(getOrder());
-  };
+const OrderTable = ({ order, removeProduct}) => {
 
   return (
     <table className="table-auto md:w-full md:text-center">
@@ -60,7 +53,7 @@ const OrderTable = ({ order }) => {
               <td>{orderItem.product.price}</td>
 
               <td>
-                <button>
+                <button onClick={()=>removeProduct(itemNumber)}>
                   <X />
                 </button>
               </td>

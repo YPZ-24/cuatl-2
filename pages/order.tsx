@@ -11,11 +11,17 @@ import OrderTable from '@/components/tables/OrderTable';
 import AuthContex from '@/context/AuthContext';
 import { initializeApolloClient } from '@/lib/apollo-client';
 import IPaymentOrder from '@/models/IPaymentOrder';
+import OrderContext from '@/context/OrderContext';
 
 export default function OrderPage({ departments }) {
   const { user, useSession } = useContext(AuthContex);
-  const [order, setOrder] = useState([]);
+
+  const { order, removeProduct } = useContext(OrderContext);
   
+  
+  //const [order, setOrder] = useState([]);
+
+  /*
   const getOrder = (): Array<IPaymentOrder> => {
     try {
       return JSON.parse(localStorage.getItem('order')) || [];
@@ -26,7 +32,7 @@ export default function OrderPage({ departments }) {
 
   useEffect(()=>{
     setOrder(getOrder)
-  },[])
+  },[])*/
 
 
   useSession();
@@ -60,7 +66,7 @@ export default function OrderPage({ departments }) {
               :
               <div className="md:grid md:grid-cols-4 md:gap-12 md:w-full">
                 <div className="md:col-span-2">
-                  <OrderTable order={order} />
+                  <OrderTable order={order} removeProduct={removeProduct} />
                 </div>
 
                 <div className="md:col-span-1 md:col-start-4">
