@@ -98,27 +98,6 @@ export default function ProductDetailsPage({ departments, product, referer }) {
 
   return (
     <div className={classes.container}>
-      <Head>
-        {
-          product.meta_title &&
-          <title>Cuatl - {product.meta_title}</title>
-        }
-        {
-          product.meta_description &&
-          <meta name="description" content={product.meta_description} />
-        }
-      </Head>
-
-      {
-        viewportWidth < 768 &&
-        <Navigationbar referer={referer} />
-      }
-
-      {
-        viewportWidth >= 768 &&
-        <Omnibar menuEntries={departments} />
-      }
-
       <div className={classes.details}>
         <div className={classes.carousel}>
           <Carousel media={product.media} />

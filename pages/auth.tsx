@@ -119,12 +119,6 @@ export default function AuthenticationPage({ departments }) {
 
   return (
     <div className={styles.tailwind.pageContainer}>
-      <Head>
-        <title>Cuatl - Inicio de sesión</title>
-        <meta name="description" content="Regístrate o inicia sesión" />
-      </Head>
-
-      <Omnibar menuEntries={departments} />
 
       <div className={styles.tailwind.mainContent.container}>
         <div className={styles.tailwind.mainContent.loginForm.container}>
@@ -172,10 +166,6 @@ export default function AuthenticationPage({ departments }) {
           </div>
         </div>
       </div>
-
-      {
-        viewport.width < 768 && <Tabbar page={TAB_PAGES.USER} />
-      }
     </div>
   );
 };

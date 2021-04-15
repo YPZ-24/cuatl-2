@@ -1,67 +1,46 @@
 import PropTypes from 'prop-types';
-import { X } from 'react-feather';
-
-import colors from '@/data/colors.json';
-import getMediaSource from '@/utils/get-media-source';
+import {TableContainer, Table, TableHead, TableRow, TableBody, TableCell, IconButton} from '@material-ui/core'
+import IconDelete from '@material-ui/icons/Delete'
 
 const OrderTable = ({ order, removeProduct}) => {
+  console.log("ORDE")
+  console.log(order.variant)
+  console.log(order.product)
+  console.log(order.variant)
 
   return (
-    <table className="table-auto md:w-full md:text-center">
-      <thead>
-        <tr>
-          <th>Producto</th>
-          <th>Descripción</th>
-          <th>Cantidad</th>
-          <th>Precio</th>
-          <th>Quitar</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        {
-          order.map((orderItem, itemNumber) => (
-            <tr key={itemNumber} className="border-t-2 border-inactive">
-              <td>
-                <div
-                  className="w-12 h-12 rounded-full overflow-hidden md:m-auto"
-                >
-                  <img
-                    src={getMediaSource(orderItem.product.cover)}
-                    alt={orderItem.product.name}
-                    className="object-center"
-                  />
-                </div>
-              </td>
-
-              <td>
-                <div
-                  style={{
-                    backgroundColor: colors[orderItem.variant.color.trim().toLowerCase()]
-                  }}
-                  className="h-3 w-3 rounded-full inline-block"
-                >
-                </div>
-                <span className="text-secondary mx-2">/</span>
-                <span>{orderItem.variant.size}</span>
-                <span className="text-secondary mx-2">/</span>
-                <span>{orderItem.variant.pattern}</span>
-              </td>
-
-              <td>{orderItem.quantity}</td>
-
-              <td>{orderItem.product.price}</td>
-
-              <td>
-                <button onClick={()=>removeProduct(itemNumber)}>
-                  <X />
-                </button>
-              </td>
-            </tr>
-          ))
-        }
-      </tbody>
-    </table>
+    <TableContainer>
+      <Table size="small">
+        <TableHead>
+          <TableRow>
+            <TableCell component = "th">QUITAR</TableCell>
+            <TableCell component = "th">PRODUCTO</TableCell>
+            <TableCell component = "th">COLOR</TableCell>
+            <TableCell component = "th">TAMAÑO</TableCell>
+            <TableCell component = "th">PRECIO</TableCell>
+            <TableCell component = "th">CANTIDAD</TableCell>
+            <TableCell component = "th">FINAL</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {order.map((orderItem, itemNumber) => (
+              <TableRow key={itemNumber}>
+                <TableCell>
+                  <IconButton onClick={()=>removeProduct(itemNumber)}>
+                    <IconDelete/>
+                  </IconButton>
+                </TableCell>
+                <TableCell>{orderItem.product.name}</TableCell>
+                <TableCell>{orderItem.variant.color}</TableCell>
+                <TableCell>{orderItem.variant.size}</TableCell>
+                <TableCell>{orderItem.product.price}</TableCell>
+                <TableCell>{orderItem.quantity}</TableCell>
+                <TableCell>{orderItem.product.price*orderItem.quantity}</TableCell>
+              </TableRow>
+            ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 

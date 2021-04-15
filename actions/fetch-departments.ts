@@ -5,7 +5,7 @@ import IDepartment from '@/models/IDepartment';
 export const getDepartments = async (
   apolloClient: ApolloClient<NormalizedCacheObject>
 ): Promise<IDepartment[]> => {
-  const { error, data } = await apolloClient.query({
+  let { error, data, loading } = await apolloClient.query({
     query: gql`
       query getDepartments {
         departments {
@@ -26,6 +26,6 @@ export const getDepartments = async (
       }
     `
   });
-
+  
   return error ?? data.departments;
 };

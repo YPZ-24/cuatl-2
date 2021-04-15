@@ -1,13 +1,7 @@
-import Head from 'next/head.js';
 import { useContext, useEffect, useState } from 'react/index';
-
-import { getDepartments } from '@/actions/fetch-departments';
 import { getProductsPage } from '@/actions/fetch-products';
 import LoadMoreButton from '@/components/buttons/LoadMoreButton';
 import ProductsGallery from '@/components/galleries/ProductsGallery';
-import Footer from '@/components/footers/Footer';
-import Omnibar from '@/components/navbars/Omnibar';
-import Tabbar, { TAB_PAGES } from '@/components/navbars/Tabbar';
 import { PAGE_LIMIT } from '@/config/globals';
 import AuthContext from '@/context/AuthContext';
 import { initializeApolloClient, useApolloClient } from '@/lib/apollo-client';
@@ -44,7 +38,8 @@ const classes = {
   }
 };
 
-export default function HomePage({ initialProducts, departments }) {
+export default function HomePage({ initialProducts }) {
+
   const { login, useSession } = useContext(AuthContext);
   const apolloClient = useApolloClient(initialProducts);
   const [page, setPage] = useState<IPage>({
@@ -77,29 +72,16 @@ export default function HomePage({ initialProducts, departments }) {
   }, []);
 
   return (
-    <div className={classes.container}>
-      <Head>
-        <title>Cuatl - La mejor moda artesanal de México</title>
-        <meta name="description" content="Encuentra los mejores productos artesanales de México" />
-      </Head>
-
-      <Omnibar menuEntries={departments} />
-
-      <div className={classes.gallery.container}>
-        <ProductsGallery products={page.data} />
-
-        <div className={classes.gallery.loadButton}>
-          <LoadMoreButton
-            disabled={!page.previousData.length}
-            fetcher={getNewPage}
-          />
-        </div>
-      </div>
-
-      <Tabbar page={TAB_PAGES.HOME} />
-      <Footer />
-    </div>
+    <>
+      <ProductsGallery products={page.data} />
+      {!page.previousData.length ? 
+        <LoadMoreButton
+          fetcher={getNewPage}
+        />
+      : null}
+    </>
   );
+  
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
@@ -108,7 +90,5 @@ export const getServerSideProps: GetServerSideProps = async () => {
     start: 0,
     limit: PAGE_LIMIT
   });
-  const departments = await getDepartments(apolloClient);
-
-  return { props: { initialProducts, departments } };
+  return { props: { initialProducts } };
 };

@@ -45,12 +45,7 @@ export default function BagPage() {
   }, []);
 
   return (
-    <div>
-      <Head>
-        <title>Cuatl - Bolsa de compras</title>
-        <meta name="description" content="Órdenes de compra en Cuatl" />
-      </Head>
-
+    <>
       {orders
         ? orders.map(order => (
           <div key="order.id">
@@ -61,6 +56,6 @@ export default function BagPage() {
           </div>))
         : (<div>Sin órdenes</div>)
       }
-    </div>
+    </>
   );
 };

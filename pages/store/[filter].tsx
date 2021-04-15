@@ -66,12 +66,6 @@ export default function FilteredProductsPage({ initialProducts, departments, que
 
   return (
     <div className={classes.container}>
-      <Head>
-        <title>Cuatl - La mejor moda artesanal de México</title>
-        <meta name="description" content="Encuentra los mejores productos artesanales de México" />
-      </Head>
-
-      <Omnibar menuEntries={departments} />
 
       <div className={classes.gallery.container}>
         <ProductsGallery products={page.data} />
@@ -85,7 +79,6 @@ export default function FilteredProductsPage({ initialProducts, departments, que
       </div>
 
       <Tabbar page={TAB_PAGES.HOME} />
-      <Footer />
     </div>
   );
 };

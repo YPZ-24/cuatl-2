@@ -159,16 +159,6 @@ export default function UserProfilePage({ departments, referer }) {
 
   return (
     <div className={styles.tailwind.pageContainer}>
-      <Head>
-        <title>Cuatl - La mejor moda artesanal de México</title>
-        <meta name="description" content="Encuentra los mejores productos artesanales de México" />
-      </Head>
-
-      {
-        viewport.width < 768
-          ? <Navigationbar referer={referer} />
-          : <Omnibar menuEntries={departments} />
-      }
 
       {
         user &&
@@ -220,10 +210,6 @@ export default function UserProfilePage({ departments, referer }) {
             </a>
           </Link>
         </div>
-      }
-
-      {
-        viewport.width < 768 && <Tabbar page={TAB_PAGES.USER} />
       }
     </div>
   );

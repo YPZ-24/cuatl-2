@@ -15,11 +15,18 @@ let apolloClient: ApolloClient<NormalizedCacheObject>;
 
 const createApolloClient = (): ApolloClient<NormalizedCacheObject> => {
   return new ApolloClient({
-    ssrMode: typeof window === 'undefined', // it is true when SSR
     link: new HttpLink({ uri: `${API_DOMAIN}/graphql` }),
     cache: new InMemoryCache()
   });
 };
+
+
+
+
+
+
+
+
 
 const initializeApolloClient = (initialState: any = null): ApolloClient<NormalizedCacheObject> => {
   const _apolloClient = apolloClient ?? createApolloClient();
@@ -42,6 +49,13 @@ const initializeApolloClient = (initialState: any = null): ApolloClient<Normaliz
 
   return _apolloClient;
 };
+
+
+
+
+
+
+
 
 //: use this custom hook in your components to hydrate the state of the Apollo
 //: Client

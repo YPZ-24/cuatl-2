@@ -86,7 +86,7 @@ export default function Tabbar({ page }: { page: TAB_PAGES }) {
   const [activeItem, setActiveItem] = useState(page);
 
   return (
-    <nav className={classes.container}>
+    <nav className={classes.container} style={{background: 'PINK'}}>
       <Link href="/">
         <a
           onClick={() => setActiveItem(TAB_PAGES.HOME)}

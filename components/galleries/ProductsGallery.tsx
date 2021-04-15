@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-
 import ProductCard from '@/components/cards/ProductCard';
 import IProduct from '@/models/IProduct';
+import {Grid} from '@material-ui/core'
 
 ProductsGallery.propTypes = {
   products: PropTypes.arrayOf(PropTypes.object)
@@ -12,26 +12,18 @@ ProductsGallery.defaultProps = {
   products: []
 };
 
-const classes = {
-  container: `
-    gap-7
-    grid
-    grid-cols-2
-    md:grid-cols-3
-    lg:grid-cols-4
-  `
-};
-
 export default function ProductsGallery({ products }) {
   return (
-    <div className={classes.container}>
+    <Grid container spacing={2}>
       {
         products.map((product: IProduct) => (
-          <Link key={product.id} href={`/products/${product.slug}`}>
-            <a><ProductCard product={product} /></a>
-          </Link>
+          <Grid item xs={12} sm={4} md={3} lg={2} key={`prod-${product.id}`} >
+            <Link href={`/products/${product.slug}`}>
+              <a><ProductCard product={product} /></a>
+            </Link>
+          </Grid>
         ))
       }
-    </div>
+    </Grid>
   );
 };

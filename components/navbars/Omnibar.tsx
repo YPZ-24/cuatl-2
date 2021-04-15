@@ -10,6 +10,9 @@ import Dropdown from '@/components/dropdowns/Dropdown';
 import DepartmentsMenu from '@/components/menus/DepartmentsMenu';
 import AuthContext from '@/context/AuthContext';
 import OrderContext from '@/context/OrderContext';
+import { initializeApolloClient } from '@/lib/apollo-client';
+import { getDepartments } from '@/actions/fetch-departments';
+import IDepartment from '@/models/IDepartment';
 
 Omnibar.propTypes = {
   menuEntries: PropTypes.array
@@ -152,10 +155,21 @@ const styles = {
   }
 };
 
-export default function Omnibar({ menuEntries }) {
+export default function Omnibar() {
   const { user } = useContext(AuthContext);
   const { order } = useContext(OrderContext);
   const [isMenuVisible, setIsMenuVisible] = useState<boolean>(false);
+  const [menuEntries, setMenuEntries] = useState<IDepartment[]>();
+
+  async function getDeptos(){
+    const apolloClient = initializeApolloClient();
+    const mEntries = await getDepartments(apolloClient);
+    setMenuEntries(mEntries)
+  }
+
+  useEffect(()=>{
+    getDeptos()
+  })
 
   return (
     <>

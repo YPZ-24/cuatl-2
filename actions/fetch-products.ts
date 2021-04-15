@@ -70,7 +70,7 @@ export const getProductBySlug = async (
   apolloClient: ApolloClient<NormalizedCacheObject>,
   slug: string
 ): Promise<IProduct> => {
-  const { error, data } = await apolloClient.query({
+  const { error, data, loading } = await apolloClient.query({
     query: gql`
       query getProduct($where: JSON! = { active: true, slug: "${slug}" }) {
         products(where: $where) {
