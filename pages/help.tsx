@@ -1,6 +1,5 @@
 import { GetServerSideProps } from "next";
 import Head from 'next/head';
-
 import { getDepartments } from "@/actions/fetch-departments";
 import { initializeApolloClient } from "@/lib/apollo-client";
 import Omnibar from "@/components/navbars/Omnibar";

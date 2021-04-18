@@ -1,6 +1,4 @@
-import Head from 'next/head';
 import { useContext, useEffect, useState } from 'react';
-
 import { getDepartments } from '@/actions/fetch-departments';
 import { getProductBySlug } from "@/actions/fetch-products";
 import AddToBagButton from '@/components/buttons/AddToBagButton';
@@ -8,13 +6,11 @@ import Carousel from '@/components/carousels/Carousel';
 import QuantitySelector from '@/components/controls/QuantitySelector';
 import VariantSelector from '@/components/controls/VariantSelector';
 import OffersSelector from '@/components/controls/OffersSelector';
-import Navigationbar from '@/components/navbars/Navigationbar';
 import AuthContext from '@/context/AuthContext';
 import { initializeApolloClient } from "@/lib/apollo-client";
 import IVariant from '@/models/IVariant';
 import IOffer from '@/models/IOffer';
 import formatPrice from '@/utils/format-price';
-import Omnibar from '@/components/navbars/Omnibar';
 
 const classes = {
   container: `

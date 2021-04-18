@@ -19,7 +19,6 @@ export default function ProductCard({ product }) {
         <CardActionArea>
           <CardMedia
             component="img"
-            alt="al"
             height="140"
             image={getMediaSource(product.cover)}
             title="Contemplative Reptile"

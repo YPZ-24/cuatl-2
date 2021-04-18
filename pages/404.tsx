@@ -1,4 +1,3 @@
-import { GetServerSideProps } from 'next';
 import { useContext } from 'react';
 
 import pageNotFoundImage from '@/assets/images/page_not_found.svg';

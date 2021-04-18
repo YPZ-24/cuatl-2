@@ -1,18 +1,28 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {Formik, Form} from 'formik'
 import MyInput from '../../components/inputs/MyInput'
 import {Container, Typography, Button} from '@material-ui/core'
 import * as Yup from 'yup'
 import myFetch from '../../utils/myFetch'
+import OrderContext from '@/context/OrderContext';
+import { STRIPE_PUBLISHED_KEY } from '@/config/globals';
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe(STRIPE_PUBLISHED_KEY);
 
 function address() {
 
+    const { order } = useContext(OrderContext);
+
     const handleSubmit = async (values)=>{
         if(!values.noExt) values.noExt = 0
-        console.log(values)
-        const data = await myFetch({method: 'POST', path: `/addresses`, body: values})
-        console.log("DATA")
-        console.log(data)
+        const stripe = await stripePromise;
+
+        const address = await myFetch({method: 'POST', path: `/addresses`, body: values})
+        const session = await myFetch({method: 'POST', path: '/orders', body: {order, address: address.id}})
+        const result = await stripe.redirectToCheckout({
+          sessionId: session.id
+        });
     }
 
     return (

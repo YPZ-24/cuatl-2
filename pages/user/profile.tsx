@@ -1,18 +1,13 @@
 import { GetServerSideProps } from 'next';
-import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useContext, useEffect, useState } from 'react';
-import { Box, Camera, CreditCard, LogOut, MapPin, Settings, User } from 'react-feather';
+import { useContext, useEffect } from 'react';
+import { Box, Camera, LogOut, MapPin } from 'react-feather';
 
 import { getDepartments } from '@/actions/fetch-departments';
 import AuthContext from '@/context/AuthContext';
 import { initializeApolloClient } from '@/lib/apollo-client';
 import useViewport from '@/utils/use-viewport';
-
-import Navigationbar from '@/components/navbars/Navigationbar';
-import Omnibar from '@/components/navbars/Omnibar';
-import Tabbar, { TAB_PAGES } from '@/components/navbars/Tabbar';
 import CircleAvatar from '@/components/avatars/CircleAvatar';
 
 const styles = {

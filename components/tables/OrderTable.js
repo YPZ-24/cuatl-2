@@ -3,10 +3,6 @@ import {TableContainer, Table, TableHead, TableRow, TableBody, TableCell, IconBu
 import IconDelete from '@material-ui/icons/Delete'
 
 const OrderTable = ({ order, removeProduct}) => {
-  console.log("ORDE")
-  console.log(order.variant)
-  console.log(order.product)
-  console.log(order.variant)
 
   return (
     <TableContainer>
@@ -26,7 +22,7 @@ const OrderTable = ({ order, removeProduct}) => {
           {order.map((orderItem, itemNumber) => (
               <TableRow key={itemNumber}>
                 <TableCell>
-                  <IconButton onClick={()=>removeProduct(itemNumber)}>
+                  <IconButton onClick={()=>{}}>
                     <IconDelete/>
                   </IconButton>
                 </TableCell>

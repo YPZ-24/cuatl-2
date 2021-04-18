@@ -13,6 +13,10 @@ import OrderContext from '@/context/OrderContext';
 import { initializeApolloClient } from '@/lib/apollo-client';
 import { getDepartments } from '@/actions/fetch-departments';
 import IDepartment from '@/models/IDepartment';
+import {Grid, Badge, AppBar} from '@material-ui/core'
+import IconButton from '@material-ui/core/IconButton'
+import LocalMallIcon from '@material-ui/icons/LocalMall';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 Omnibar.propTypes = {
   menuEntries: PropTypes.array
@@ -27,19 +31,6 @@ const classes = {
     bg-repeat-x
     h-8
     w-full
-  `,
-
-  container: `
-    bg-bse
-    flex
-    flex-col
-    flex-nowrap
-    h-24
-    md:h-28
-    relative
-    shadow
-    w-full
-    z-50
   `,
 
   departments: {
@@ -58,56 +49,6 @@ const classes = {
     `
   },
 
-  linkGroup: {
-    bag: {
-      container: `
-        hidden
-        md:flex
-        md:flex-row
-        md:flex-nowrap
-        md:items-center
-        md:justify-center
-        md:h-12
-        md:relative
-        md:w-12
-      `,
-      itemsCounter: `
-        absolute
-        bg-accent
-        border-2
-        border-bse
-        flex
-        flex-row
-        flex-nowrap
-        font-bold
-        h-5
-        items-center
-        justify-center
-        right-1
-        rounded-full
-        text-bse
-        top-1
-        w-5
-      `
-    },
-    container: `
-      flex
-      flex-row
-      flex-nowrap
-      items-center
-      justify-end
-      w-1/3
-    `,
-    user: {
-      container: `
-        hidden
-        md:cursor-pointer
-        md:inline-block
-        md:ml-4
-      `
-    }
-  },
-
   logo: {
     container: `
       flex
@@ -122,16 +63,6 @@ const classes = {
       max-w-full
     `,
   },
-
-  navbar: `
-    flex
-    flex-1
-    flex-row
-    flex-nowrap
-    items-center
-    justify-between
-    px-7
-  `
 };
 
 const styles = {
@@ -172,68 +103,44 @@ export default function Omnibar() {
   })
 
   return (
-    <>
-      <div className={classes.container}>
-        <div className={classes.carving} style={styles.carving}></div>
-
-        <nav className={classes.navbar}>
+    <AppBar position="static" style={{
+      marginBottom: "20px",
+      background: "white"
+    }}>
+      <Grid container spacing={1}>
+        <Grid item xs={12}>
+          <div className={classes.carving} style={styles.carving}></div>
+        </Grid>
+        <Grid item xs={2}>
           <a href="/" className={classes.logo.container}>
             <img className={classes.logo.image} src={logoImage} alt="Logo" />
           </a>
-
-          <div className={classes.departments.container}>
-            <div className="hidden md:block">
-              <Dropdown
-                label="Departamentos"
-                onClick={() => setIsMenuVisible(!isMenuVisible)}
-              />
-            </div>
+        </Grid>
+        <Grid item xs={6}>
+          <Dropdown
+            label="Departamentos"
+            onClick={() => setIsMenuVisible(!isMenuVisible)}
+          />
+        </Grid>
+        <Grid item xs={2}>
+          <IconButton href={user ? '/order' : '/auth'}>
+            <Badge badgeContent={order.length} color="primary">
+              <LocalMallIcon />
+            </Badge>
+          </IconButton>
+        </Grid>
+        <Grid item xs={2}>
+          <IconButton href={user ? '/user/profile' : '/auth'}>
+            <AccountCircleIcon/>
+          </IconButton>
+        </Grid>
+        {
+          isMenuVisible &&
+          <div className={styles.tailwind.departmentsMenu.menuContainer}>
+            <DepartmentsMenu departments={menuEntries} />
           </div>
-
-          <div className={classes.linkGroup.container}>
-            <div
-              className="md:hidden"
-              onClick={() => setIsMenuVisible(!isMenuVisible)}>
-              {
-                isMenuVisible
-                  ? <MoreHorizontal />
-                  : <MoreVertical />
-              }
-            </div>
-
-            <a
-              href={user ? '/order' : '/auth'}
-              className={classes.linkGroup.bag.container}
-            >
-              <ShoppingBag />
-              <div
-                className={classes.linkGroup.bag.itemsCounter}
-                style={styles.itemsCounter}
-              >
-                {order.length}
-              </div>
-            </a>
-
-            <a
-              href={user ? '/user/profile' : '/auth'}
-              className={classes.linkGroup.user.container}
-            >
-              {
-                user
-                  ? <CircleAvatar avatar={user.avatar} size="8" />
-                  : <OutlineButton label="Regístrate o ingresa" />
-              }
-            </a>
-          </div>
-        </nav>
-      </div>
-
-      {
-        isMenuVisible &&
-        <div className={styles.tailwind.departmentsMenu.menuContainer}>
-          <DepartmentsMenu departments={menuEntries} />
-        </div>
-      }
-    </>
+        }
+      </Grid>
+    </AppBar>
   );
 };

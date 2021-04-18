@@ -1,33 +1,11 @@
 import { useContext } from 'react';
 import OrderResumeTable from '@/components/tables/OrderResumeTable';
 import OrderTable from '@/components/tables/OrderTable';
-import AuthContex from '@/context/AuthContext';
 import OrderContext from '@/context/OrderContext';
 import {Typography, Grid} from '@material-ui/core'
 
 export default function OrderPage() {
-  const { user, useSession } = useContext(AuthContex);
-
   const { order, removeProduct } = useContext(OrderContext);
-  
-  
-  //const [order, setOrder] = useState([]);
-
-  /*
-  const getOrder = (): Array<IPaymentOrder> => {
-    try {
-      return JSON.parse(localStorage.getItem('order')) || [];
-    } catch (error) { }
-
-    return [];
-  };
-
-  useEffect(()=>{
-    setOrder(getOrder)
-  },[])*/
-
-
-  useSession();
 
   return (
     <>

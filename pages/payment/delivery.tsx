@@ -1,7 +1,5 @@
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
-
 import { API_DOMAIN } from '@/config/globals';
 import AuthContext from '@/context/AuthContext';
 

@@ -1,12 +1,8 @@
-import Head from 'next/head.js';
 import { useContext, useState } from 'react/index';
-
 import { getDepartments } from '@/actions/fetch-departments';
 import { getProductsPage } from '@/actions/fetch-products';
 import LoadMoreButton from '@/components/buttons/LoadMoreButton';
 import ProductsGallery from '@/components/galleries/ProductsGallery';
-import Footer from '@/components/footers/Footer';
-import Omnibar from '@/components/navbars/Omnibar';
 import Tabbar, { TAB_PAGES } from '@/components/navbars/Tabbar';
 import { PAGE_LIMIT } from '@/config/globals';
 import AuthContext from '@/context/AuthContext';

@@ -1,15 +1,9 @@
-import Head from 'next/head';
 import { useRouter } from 'next/router';
-import { useContext, useEffect } from 'react';
-
+import { useEffect } from 'react';
 import { API_DOMAIN } from '@/config/globals';
-import AuthContext from '@/context/AuthContext';
 
 export default function SuccessPaymentPage() {
   const router = useRouter();
-  const { user, useSession } = useContext(AuthContext);
-
-  useSession();
 
   useEffect(() => {
     const path = router.asPath

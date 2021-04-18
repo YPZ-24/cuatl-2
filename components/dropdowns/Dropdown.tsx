@@ -1,3 +1,4 @@
+import { Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { useRef } from 'react';
 import { ChevronDown } from 'react-feather';
@@ -31,7 +32,7 @@ export default function Dropdown({ children = '', label, onClick }) {
   return (
     <>
       <a onClick={animate} className={classes.container}>
-        <span className="mr-1">{label}</span>
+        <Typography variant="h6" color="textPrimary">{label}</Typography>
         <span ref={arrowIcon}><ChevronDown size="18" /></span>
       </a>
       {children}
