@@ -3,7 +3,6 @@ import { getDepartments } from '@/actions/fetch-departments';
 import { getProductsPage } from '@/actions/fetch-products';
 import LoadMoreButton from '@/components/buttons/LoadMoreButton';
 import ProductsGallery from '@/components/galleries/ProductsGallery';
-import Tabbar, { TAB_PAGES } from '@/components/navbars/Tabbar';
 import { PAGE_LIMIT } from '@/config/globals';
 import { initializeApolloClient, useApolloClient } from '@/lib/apollo-client';
 import IPage from '@/models/IPage';
@@ -69,8 +68,6 @@ export default function FilteredProductsPage({ initialProducts, departments, que
           />
         </div>
       </div>
-
-      <Tabbar page={TAB_PAGES.HOME} />
     </div>
   );
 };
