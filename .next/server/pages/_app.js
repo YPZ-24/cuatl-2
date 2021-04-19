@@ -687,7 +687,7 @@ module.exports = require("@material-ui/core/Container");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return AUTH_GOOGLE_CALLBACK; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return AUTH_GOOGLE_URL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return STRIPE_PUBLISHED_KEY; });
-const API_DOMAIN = "";
+const API_DOMAIN = "http://165.227.199.69:1337";
 const PAGE_LIMIT = 12;
 console.log("API");
 console.log(API_DOMAIN);
