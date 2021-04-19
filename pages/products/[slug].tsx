@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getDepartments } from '@/actions/fetch-departments';
 import { getProductBySlug } from "@/actions/fetch-products";
 import AddToBagButton from '@/components/buttons/AddToBagButton';
@@ -6,7 +6,6 @@ import Carousel from '@/components/carousels/Carousel';
 import QuantitySelector from '@/components/controls/QuantitySelector';
 import VariantSelector from '@/components/controls/VariantSelector';
 import OffersSelector from '@/components/controls/OffersSelector';
-import AuthContext from '@/context/AuthContext';
 import { initializeApolloClient } from "@/lib/apollo-client";
 import IVariant from '@/models/IVariant';
 import IOffer from '@/models/IOffer';
@@ -81,12 +80,9 @@ const classes = {
 };
 
 export default function ProductDetailsPage({ departments, product, referer }) {
-  const { useSession } = useContext(AuthContext);
   const [selectedVariant, setSelectedVariant] = useState<IVariant>(null);
   const [selectedOffers, setSelectedOffers] = useState<IOffer[]>([]);
   const [viewportWidth, setViewportWidth] = useState<number>(0);
-
-  useSession();
 
   useEffect(() => {
     setViewportWidth(window.innerWidth);

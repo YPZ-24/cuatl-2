@@ -20,7 +20,6 @@ function OrderProvider({ children }) {
     } catch (error) { }
     return [];
   };
-
   
   useEffect(()=>{
     const o = getOrder()
@@ -30,11 +29,6 @@ function OrderProvider({ children }) {
   useEffect(()=>{
     saveOrder(order)
   },[order])
-
-  const countProducts = (): number => {
-    //return order ? order.variants.length : 0;
-    return 0
-  };
 
   const saveOrder = (order: Array<IPaymentOrder>) => {
     localStorage.setItem('order', JSON.stringify(order));
@@ -59,42 +53,16 @@ function OrderProvider({ children }) {
      });
    }
     setOrder(activeOrder);
-    //saveOrder(activeOrder)
   };
 
   const removeProduct = (itemNumber) => {
-      alert("BORRAR")
       const activeOrder = [...order]
       activeOrder.splice(itemNumber, 1)
       setOrder(activeOrder)
-      //saveOrder(order)
   };
-
-
-  /*
-
-  
-
-  const addOrderItem = (item: IPaymentOrder) => {
-  };
-
-  //: use this function to add a new item to the order in local storage
-  const setOrderItemInLS = (activeOrder: Array<IPaymentOrder>) => {
-    localStorage.setItem('orderItems', JSON.stringify(activeOrder));
-  };
-
-  //: use this function to get the current order object from local storage
-  const getOrderItemFromLS = (): Array<IPaymentOrder> => {
-    try {
-      return JSON.parse(localStorage.getItem('orderItems')) || [];
-    } catch (_error) {
-      console.error((_error as SyntaxError).message);
-      return null;
-    }
-  };*/
 
   return (
-    <OrderContext.Provider value={{ order, countProducts, addProductToBag, removeProduct }}>
+    <OrderContext.Provider value={{ order, addProductToBag, removeProduct, setOrder }}>
       {children}
     </OrderContext.Provider>
   );

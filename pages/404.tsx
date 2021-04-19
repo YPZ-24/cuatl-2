@@ -1,7 +1,4 @@
-import { useContext } from 'react';
-
 import pageNotFoundImage from '@/assets/images/page_not_found.svg';
-import AuthContext from '@/context/AuthContext';
 
 const classes = {
   container: `
@@ -55,9 +52,6 @@ const classes = {
 };
 
 export default function Custom404() {
-  const { useSession } = useContext(AuthContext);
-
-  useSession();
 
   return (
     <div className={classes.container}>

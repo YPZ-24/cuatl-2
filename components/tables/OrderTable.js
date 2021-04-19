@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import {TableContainer, Table, TableHead, TableRow, TableBody, TableCell, IconButton} from '@material-ui/core'
-import IconDelete from '@material-ui/icons/Delete'
+import ButtonDelete from '../buttons/ButtonDelete'
 
 const OrderTable = ({ order, removeProduct}) => {
 
@@ -22,9 +22,7 @@ const OrderTable = ({ order, removeProduct}) => {
           {order.map((orderItem, itemNumber) => (
               <TableRow key={itemNumber}>
                 <TableCell>
-                  <IconButton onClick={()=>{}}>
-                    <IconDelete/>
-                  </IconButton>
+                  <ButtonDelete handlerAccept={()=>removeProduct(itemNumber)} />
                 </TableCell>
                 <TableCell>{orderItem.product.name}</TableCell>
                 <TableCell>{orderItem.variant.color}</TableCell>

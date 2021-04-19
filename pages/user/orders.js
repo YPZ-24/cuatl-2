@@ -1,15 +1,41 @@
 import React, {useContext, useEffect, useState} from 'react'
 import { API_DOMAIN } from '@/config/globals';
 import AuthContext from '@/context/AuthContext';
+import OrderContext from '@/context/OrderContext';
 import { Accordion, AccordionSummary, Typography, AccordionDetails, Grid, Divider, Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import formatPrice from '@/utils/format-price';
-
+import { useRouter } from 'next/router';
+import myFetch from '../../utils/myFetch'
+import {useSnackbar} from 'notistack'
 
 function orders() {
 
+    const { enqueueSnackbar } = useSnackbar();
     const { getToken } = useContext(AuthContext);
+    const { setOrder } = useContext(OrderContext);
     const [userOrders, setUserOrders] = useState([])
+    const router = useRouter();
+
+    const confirmOrder = async (sessionId) => {
+        const order = await myFetch({
+            method: 'POST', 
+            path: `/orders/confirm`, 
+            body: { checkout_session: sessionId }
+        })
+        if(order._id) enqueueSnackbar(`Listo: ${order.status.toUpperCase()}`)
+    };
+
+    useEffect(() => {
+        const path = router.asPath
+        const i = path.search("=")
+        const sessionId = path.slice(i+1)
+        if(i!=-1) {
+            confirmOrder(sessionId)
+            setOrder([])
+            router.push('/user/orders')
+        }
+    }, []);
 
     async function getUserOrders(){
         const token = await getToken();

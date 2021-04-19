@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import Button from '@material-ui/core/Button'
 
-
 const PaymentButton = () => {
   const router = useRouter();
 
@@ -11,7 +10,7 @@ const PaymentButton = () => {
   };
 
   return (
-    <Button onClick={handleClick} variant="contained" color="primary" fullWidth>
+    <Button onClick={handleClick} variant="contained" color="secondary" fullWidth>
       Continuar la compra
     </Button>
   );

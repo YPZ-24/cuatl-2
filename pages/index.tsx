@@ -1,46 +1,15 @@
-import { useContext, useEffect, useState } from 'react/index';
+import { useState } from 'react/index';
 import { getProductsPage } from '@/actions/fetch-products';
 import LoadMoreButton from '@/components/buttons/LoadMoreButton';
 import ProductsGallery from '@/components/galleries/ProductsGallery';
 import { PAGE_LIMIT } from '@/config/globals';
-import AuthContext from '@/context/AuthContext';
 import { initializeApolloClient, useApolloClient } from '@/lib/apollo-client';
 import IPage from '@/models/IPage';
 import IProduct from '@/models/IProduct';
 import { GetServerSideProps } from 'next';
 
-const classes = {
-  container: `
-    h-screen
-    max-w-screen
-  `,
-
-  gallery: {
-    container: `
-      h-3/4
-      md:h-auto
-      md:overflow-visible
-      overflow-y-auto
-      px-7
-      py-12
-      top-0
-      w-full
-    `,
-    loadButton: `
-      flex
-      flex-nowrap
-      flex-row
-      justify-center
-      mb-20
-      md:my-12
-      mt-12
-    `
-  }
-};
-
 export default function HomePage({ initialProducts }) {
 
-  const { login, useSession } = useContext(AuthContext);
   const apolloClient = useApolloClient(initialProducts);
   const [page, setPage] = useState<IPage>({
     index: 0,
@@ -59,17 +28,6 @@ export default function HomePage({ initialProducts }) {
       previousData: newPage
     });
   };
-
-  useSession();
-
-  useEffect(() => {
-    const loginUser = async () => {
-      //: login user if the session token is in the route query
-      if (location.search) await login(location.search);
-    };
-
-    loginUser();
-  }, []);
 
   return (
     <>

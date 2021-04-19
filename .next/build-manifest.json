@@ -29,10 +29,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/store/[filter]": [
+    "/order": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/store/[filter].js"
+      "static/chunks/pages/order.js"
+    ],
+    "/products/[slug]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/products/[slug].js"
     ],
     "/user/orders": [
       "static/chunks/webpack.js",

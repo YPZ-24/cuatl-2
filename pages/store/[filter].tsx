@@ -1,11 +1,10 @@
-import { useContext, useState } from 'react/index';
+import { useState } from 'react/index';
 import { getDepartments } from '@/actions/fetch-departments';
 import { getProductsPage } from '@/actions/fetch-products';
 import LoadMoreButton from '@/components/buttons/LoadMoreButton';
 import ProductsGallery from '@/components/galleries/ProductsGallery';
 import Tabbar, { TAB_PAGES } from '@/components/navbars/Tabbar';
 import { PAGE_LIMIT } from '@/config/globals';
-import AuthContext from '@/context/AuthContext';
 import { initializeApolloClient, useApolloClient } from '@/lib/apollo-client';
 import IPage from '@/models/IPage';
 import IProduct from '@/models/IProduct';
@@ -38,7 +37,6 @@ const classes = {
 };
 
 export default function FilteredProductsPage({ initialProducts, departments, query }) {
-  const { useSession } = useContext(AuthContext);
   const apolloClient = useApolloClient(initialProducts);
   const [page, setPage] = useState<IPage>({
     index: 0,
@@ -57,8 +55,6 @@ export default function FilteredProductsPage({ initialProducts, departments, que
       previousData: newPage
     });
   };
-
-  useSession();
 
   return (
     <div className={classes.container}>

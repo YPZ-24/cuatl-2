@@ -63,14 +63,12 @@ const styles = {
 };
 
 export default function AuthenticationPage({ departments }) {
-  const { useSession, isUserLoggedIn } = useContext(AuthContext);
+  const { isUserLoggedIn } = useContext(AuthContext);
   const router = useRouter();
 
   useEffect(() => {
     if (isUserLoggedIn()) router.push('/');
   }, []);
-
-  useSession();
 
   return (
       <Grid container spacing={1}

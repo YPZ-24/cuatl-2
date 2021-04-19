@@ -5,6 +5,9 @@ import { AuthProvider } from '@/context/AuthContext';
 import { OrderProvider } from '@/context/OrderContext';
 import { useApolloClient } from '@/lib/apollo-client';
 import Layout from './Layout';
+import {ThemeProvider, CssBaseline} from '@material-ui/core'
+import themeConfig from '../utils/themeConfig'
+import { SnackbarProvider } from 'notistack';
 
 function App({ Component, pageProps }: AppProps) {
   const apolloClient = useApolloClient(pageProps.initialApolloState);
@@ -13,9 +16,19 @@ function App({ Component, pageProps }: AppProps) {
     <ApolloProvider client={apolloClient}>
       <AuthProvider>
         <OrderProvider>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
+          <ThemeProvider theme={themeConfig}>
+            <CssBaseline/>
+            <SnackbarProvider
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right'
+              }}
+            >
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </SnackbarProvider>
+          </ThemeProvider>
         </OrderProvider>
       </AuthProvider>
     </ApolloProvider>
