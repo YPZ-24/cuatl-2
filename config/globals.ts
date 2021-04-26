@@ -5,8 +5,8 @@ const AUTH_FACEBOOK_CALLBACK = `${API_DOMAIN}/auth/facebook/callback`;
 const AUTH_FACEBOOK_URL = `${API_DOMAIN}/connect/facebook`;
 //const AUTH_GOOGLE_CALLBACK = `http://cuatl.shop/api/connect/google/callback`;
 //const AUTH_GOOGLE_URL = `http://cuatl.shop/api/connect/google`;
-const AUTH_GOOGLE_CALLBACK = `${API_DOMAIN}/connect/google/callback`;
-const AUTH_GOOGLE_URL = `${API_DOMAIN}/connect/google`;
+const AUTH_GOOGLE_CALLBACK = `${API_DOMAIN}/connect/google/callback/`;
+const AUTH_GOOGLE_URL = `${API_DOMAIN}/connect/google/`;
 
 
 const STRIPE_PUBLISHED_KEY = process.env.NEXT_PUBLIC_STRIPE_PUBLISHED_KEY;
