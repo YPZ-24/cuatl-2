@@ -18,16 +18,13 @@ function address() {
 
     const handleSubmit = async (values)=>{
         setOpen(true)
-
         if(!values.noExt) values.noExt = 0
         const stripe = await stripePromise;
-
         const address = await myFetch({method: 'POST', path: `/addresses`, body: values})
         const session = await myFetch({method: 'POST', path: '/orders', body: {order, address: address.id}})
         const result = await stripe.redirectToCheckout({
           sessionId: session.id
         });
-
         setOpen(false)
     }
 
