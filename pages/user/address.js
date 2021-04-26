@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useContext, useState} from 'react'
 import {Formik, Form} from 'formik'
 import MyInput from '../../components/inputs/MyInput'
 import {Container, Typography, Button} from '@material-ui/core'
@@ -7,14 +7,18 @@ import myFetch from '../../utils/myFetch'
 import OrderContext from '@/context/OrderContext';
 import { STRIPE_PUBLISHED_KEY } from '@/config/globals';
 import { loadStripe } from '@stripe/stripe-js';
+import MyBackdrop from '../../components/MyBackdrop'
 
 const stripePromise = loadStripe(STRIPE_PUBLISHED_KEY);
 
 function address() {
 
     const { order } = useContext(OrderContext);
+    const [open, setOpen] = useState(false)
 
     const handleSubmit = async (values)=>{
+        setOpen(true)
+
         if(!values.noExt) values.noExt = 0
         const stripe = await stripePromise;
 
@@ -23,10 +27,13 @@ function address() {
         const result = await stripe.redirectToCheckout({
           sessionId: session.id
         });
+
+        setOpen(false)
     }
 
     return (
         <Container maxWidth="xs">
+            <MyBackdrop open={open} />
             <Typography variant="h5" align="center">DIRECCIÓN</Typography>
             <Formik
                 initialValues = {{

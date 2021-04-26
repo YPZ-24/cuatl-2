@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import Button from '@material-ui/core/Button'
+import {Button} from '@material-ui/core'
 
 const PaymentButton = () => {
   const router = useRouter();
