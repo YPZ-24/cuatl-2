@@ -328,14 +328,13 @@ const getProductBySlug = async (apolloClient, slug) => {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return AUTH_GOOGLE_CALLBACK; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return AUTH_GOOGLE_URL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return STRIPE_PUBLISHED_KEY; });
-const API_DOMAIN = "http://cuatl.shop/api";
+const API_DOMAIN = "http://165.227.199.69:1337";
 const PAGE_LIMIT = 12;
 const AUTH_FACEBOOK_CALLBACK = `${API_DOMAIN}/auth/facebook/callback`;
 const AUTH_FACEBOOK_URL = `${API_DOMAIN}/connect/facebook`; //const AUTH_GOOGLE_CALLBACK = `http://cuatl.shop/api/connect/google/callback`;
-//const AUTH_GOOGLE_URL = `http://cuatl.shop/api/connect/google`;
 
-const AUTH_GOOGLE_CALLBACK = 'http://165.227.199.69:1337/auth/google/callback';
-const AUTH_GOOGLE_URL = `${API_DOMAIN}/connect/google/`;
+const AUTH_GOOGLE_URL = `http://cuatl.shop/api/connect/google`;
+const AUTH_GOOGLE_CALLBACK = `${API_DOMAIN}/auth/google/callback`;
 const STRIPE_PUBLISHED_KEY = "pk_test_51Hw15gJ4rvPOyPXnQ6Rjf7X4RxmsSBqvTVy3h3Bfwdo2WddlWAgC64bzfHeQbn4V5jJpPrJ7eHeWrGQMWOlRzW8700mrQLCJpL";
 
 
