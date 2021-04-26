@@ -7,7 +7,6 @@ import { initializeApolloClient, useApolloClient } from '@/lib/apollo-client';
 import IPage from '@/models/IPage';
 import IProduct from '@/models/IProduct';
 import { GetServerSideProps } from 'next';
-import PaymentButton from '@/components/buttons/PaymentButton';
 
 export default function HomePage({ initialProducts }) {
 
@@ -32,7 +31,6 @@ export default function HomePage({ initialProducts }) {
 
   return (
     <>
-      <PaymentButton/>
       <ProductsGallery products={page.data} />
       {!page.previousData.length ? 
         <LoadMoreButton
