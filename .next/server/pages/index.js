@@ -278,8 +278,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_galleries_ProductsGallery__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("gRJg");
 /* harmony import */ var _config_globals__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("VS8K");
 /* harmony import */ var _lib_apollo_client__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__("+GZE");
-/* harmony import */ var _components_buttons_PaymentButton__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__("yl8n");
-
 
 
 
@@ -312,7 +310,7 @@ function HomePage({
   };
 
   return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
-    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_components_buttons_PaymentButton__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"], {}), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_components_galleries_ProductsGallery__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
+    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_components_galleries_ProductsGallery__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
       products: page.data
     }), !page.previousData.length ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_components_buttons_LoadMoreButton__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"], {
       fetcher: getNewPage
@@ -480,13 +478,6 @@ function normalizeLocalePath(pathname, locales) {
     detectedLocale
   };
 }
-
-/***/ }),
-
-/***/ "4Q3z":
-/***/ (function(module, exports) {
-
-module.exports = require("next/router");
 
 /***/ }),
 
@@ -3285,43 +3276,6 @@ function createObserver(options) {
 "use strict";
 exports.__esModule=true;exports.normalizePathSep=normalizePathSep;exports.denormalizePagePath=denormalizePagePath;function normalizePathSep(path){return path.replace(/\\/g,'/');}function denormalizePagePath(page){page=normalizePathSep(page);if(page.startsWith('/index/')){page=page.slice(6);}else if(page==='/index'){page='/';}return page;}
 //# sourceMappingURL=denormalize-page-path.js.map
-
-/***/ }),
-
-/***/ "yl8n":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("F5FC");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("4Q3z");
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("KKbo");
-/* harmony import */ var _material_ui_core__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
-
-const PaymentButton = () => {
-  const router = Object(next_router__WEBPACK_IMPORTED_MODULE_1__["useRouter"])();
-
-  const handleClick = async () => {
-    router.push('/user/address');
-  };
-
-  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_material_ui_core__WEBPACK_IMPORTED_MODULE_2__["Button"], {
-    onClick: handleClick,
-    variant: "contained",
-    color: "secondary",
-    fullWidth: true,
-    children: "Continuar la compra"
-  });
-};
-
-PaymentButton.default = {
-  order: []
-};
-/* harmony default export */ __webpack_exports__["a"] = (PaymentButton);
 
 /***/ }),
 
