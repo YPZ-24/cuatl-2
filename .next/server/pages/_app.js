@@ -200,18 +200,8 @@ var globals = __webpack_require__("VS8K");
 const getSession = async token => {
   const url = token.includes('id_token') ? globals["c" /* AUTH_GOOGLE_CALLBACK */] : globals["b" /* AUTH_FACEBOOK_CALLBACK */];
   let response;
-
-  try {
-    response = await fetch(url + token);
-    console.log("RESPONSE");
-    console.log(response);
-  } catch (e) {
-    console.log("ERROR");
-    console.log(e);
-  }
-
+  response = await fetch(url + token);
   const sessionData = await response.json();
-  console.log(sessionData);
   return {
     token: sessionData.jwt,
     user: {
@@ -246,8 +236,6 @@ function AuthProvider({
     if ('id_token' in router.query || 'access_token' in router.query) {
       const session = await getSession(location.search);
       router.replace('/');
-      console.log("SSES");
-      console.log(session);
       sessionStorage.setItem('session', JSON.stringify(session));
       setUser(session.user);
     }
@@ -706,7 +694,7 @@ const AUTH_FACEBOOK_CALLBACK = `${API_DOMAIN}/auth/facebook/callback`;
 const AUTH_FACEBOOK_URL = `${API_DOMAIN}/connect/facebook`; //const AUTH_GOOGLE_CALLBACK = `http://cuatl.shop/api/connect/google/callback`;
 //const AUTH_GOOGLE_URL = `http://cuatl.shop/api/connect/google`;
 
-const AUTH_GOOGLE_CALLBACK = `${API_DOMAIN}/connect/google/callback/`;
+const AUTH_GOOGLE_CALLBACK = 'http://165.227.199.69:1337/auth/google/callback';
 const AUTH_GOOGLE_URL = `${API_DOMAIN}/connect/google/`;
 const STRIPE_PUBLISHED_KEY = "pk_test_51Hw15gJ4rvPOyPXnQ6Rjf7X4RxmsSBqvTVy3h3Bfwdo2WddlWAgC64bzfHeQbn4V5jJpPrJ7eHeWrGQMWOlRzW8700mrQLCJpL";
 

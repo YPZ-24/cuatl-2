@@ -1145,7 +1145,7 @@ const AUTH_FACEBOOK_CALLBACK = `${API_DOMAIN}/auth/facebook/callback`;
 const AUTH_FACEBOOK_URL = `${API_DOMAIN}/connect/facebook`; //const AUTH_GOOGLE_CALLBACK = `http://cuatl.shop/api/connect/google/callback`;
 //const AUTH_GOOGLE_URL = `http://cuatl.shop/api/connect/google`;
 
-const AUTH_GOOGLE_CALLBACK = `${API_DOMAIN}/connect/google/callback/`;
+const AUTH_GOOGLE_CALLBACK = 'http://165.227.199.69:1337/auth/google/callback';
 const AUTH_GOOGLE_URL = `${API_DOMAIN}/connect/google/`;
 const STRIPE_PUBLISHED_KEY = "pk_test_51Hw15gJ4rvPOyPXnQ6Rjf7X4RxmsSBqvTVy3h3Bfwdo2WddlWAgC64bzfHeQbn4V5jJpPrJ7eHeWrGQMWOlRzW8700mrQLCJpL";
 

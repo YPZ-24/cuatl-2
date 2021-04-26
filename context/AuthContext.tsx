@@ -22,8 +22,6 @@ function AuthProvider({ children }) {
       const session: ISession = await getSession(location.search);
 
       router.replace('/');
-      console.log("SSES")
-      console.log(session)
       sessionStorage.setItem('session', JSON.stringify(session));
       setUser(session.user);
     }
