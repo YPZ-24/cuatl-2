@@ -5,8 +5,16 @@ export const getSession = async (token: string): Promise<ISession> => {
   const url: string = token.includes('id_token')
     ? AUTH_GOOGLE_CALLBACK
     : AUTH_FACEBOOK_CALLBACK;
-
-  const response = await fetch(url + token);
+    let response;
+  try{
+    response = await fetch(url + token);
+    console.log("RESPONSE")
+    console.log(response)
+  }catch(e){
+    console.log("ERROR")
+    console.log(e)
+  }
+  
   const sessionData = await response.json();
 
   return {

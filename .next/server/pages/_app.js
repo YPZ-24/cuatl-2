@@ -199,7 +199,17 @@ var globals = __webpack_require__("VS8K");
 
 const getSession = async token => {
   const url = token.includes('id_token') ? globals["c" /* AUTH_GOOGLE_CALLBACK */] : globals["b" /* AUTH_FACEBOOK_CALLBACK */];
-  const response = await fetch(url + token);
+  let response;
+
+  try {
+    response = await fetch(url + token);
+    console.log("RESPONSE");
+    console.log(response);
+  } catch (e) {
+    console.log("ERROR");
+    console.log(e);
+  }
+
   const sessionData = await response.json();
   return {
     token: sessionData.jwt,
