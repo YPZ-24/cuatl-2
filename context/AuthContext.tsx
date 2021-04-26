@@ -57,7 +57,10 @@ function AuthProvider({ children }) {
   };
 
   const isUserLoggedIn = (): boolean => {
-    return getSessionStorage() ? true : false;
+    const s = getSessionStorage()
+    console.log("s")
+    console.log(s)
+    return s ? true : false;
   };
 
   return (
