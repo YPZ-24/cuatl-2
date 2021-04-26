@@ -211,6 +211,7 @@ const getSession = async token => {
   }
 
   const sessionData = await response.json();
+  console.log(sessionData);
   return {
     token: sessionData.jwt,
     user: {
@@ -245,6 +246,8 @@ function AuthProvider({
     if ('id_token' in router.query || 'access_token' in router.query) {
       const session = await getSession(location.search);
       router.replace('/');
+      console.log("SSES");
+      console.log(session);
       sessionStorage.setItem('session', JSON.stringify(session));
       setUser(session.user);
     }

@@ -16,6 +16,7 @@ export const getSession = async (token: string): Promise<ISession> => {
   }
   
   const sessionData = await response.json();
+  console.log(sessionData)
 
   return {
     token: sessionData.jwt,
