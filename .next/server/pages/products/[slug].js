@@ -196,6 +196,13 @@ module.exports = require("react/jsx-runtime");
 
 /***/ }),
 
+/***/ "K7k0":
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
 /***/ "KKbo":
 /***/ (function(module, exports) {
 
@@ -207,6 +214,13 @@ module.exports = require("@material-ui/core");
 /***/ (function(module, exports) {
 
 module.exports = require("react-feather");
+
+/***/ }),
+
+/***/ "O/hg":
+/***/ (function(module, exports) {
+
+module.exports = require("react-slick");
 
 /***/ }),
 
@@ -524,10 +538,10 @@ const getDepartments = async (apolloClient) => {
 
 /***/ }),
 
-/***/ "qGP1":
-/***/ (function(module) {
+/***/ "tyWD":
+/***/ (function(module, exports) {
 
-module.exports = JSON.parse("{\"amarillo\":\"#fbdc58\",\"azul\":\"#4fbcdc\",\"azul marino\":\"#000080\",\"blanco\":\"#ffffff\",\"naranja\":\"#fe7f46\",\"negro\":\"#120e0f\",\"guinda\":\"#bd3e55\",\"rojo\":\"#ff0000\",\"verde\":\"#6fc421\",\"vino\":\"#a3195b\"}");
+
 
 /***/ }),
 
@@ -554,14 +568,14 @@ var fetch_departments = __webpack_require__("pvWX");
 // EXTERNAL MODULE: ./actions/fetch-products.ts
 var fetch_products = __webpack_require__("PwMW");
 
-// EXTERNAL MODULE: external "react-feather"
-var external_react_feather_ = __webpack_require__("NC1Z");
-
 // EXTERNAL MODULE: ./context/OrderContext.tsx
 var OrderContext = __webpack_require__("bCPq");
 
 // EXTERNAL MODULE: external "notistack"
 var external_notistack_ = __webpack_require__("oF3+");
+
+// EXTERNAL MODULE: external "@material-ui/core"
+var core_ = __webpack_require__("KKbo");
 
 // CONCATENATED MODULE: ./components/buttons/AddToBagButton.tsx
 
@@ -569,28 +583,8 @@ var external_notistack_ = __webpack_require__("oF3+");
 
 
 
-
 AddToBagButton.defaultProps = {
   order: null
-};
-const classes = {
-  container: `
-    bg-accent
-    cursor-pointer
-    flex
-    flex-row
-    flex-nowrap
-    items-center
-    hover:bg-inactive
-    hover:text-primary
-    justify-center
-    font-bold
-    px-4
-    py-3
-    rounded-lg
-    text-bse
-    shadow
-  `
 };
 function AddToBagButton({
   order
@@ -609,128 +603,74 @@ function AddToBagButton({
     enqueueSnackbar("Articulo agregado");
   };
 
-  return /*#__PURE__*/Object(jsx_runtime_["jsxs"])("a", {
+  return /*#__PURE__*/Object(jsx_runtime_["jsx"])(core_["Button"], {
     onClick: e => handlerClick(e),
-    className: classes.container,
-    children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
-      className: "mr-3",
-      children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_feather_["ShoppingBag"], {})
-    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
-      children: "A\xF1adir a la bolsa"
-    })]
+    fullWidth: true,
+    variant: "contained",
+    color: "primary",
+    children: "A\xD1ADIR A LA BOLSA"
   });
 }
 ;
+// EXTERNAL MODULE: external "react-slick"
+var external_react_slick_ = __webpack_require__("O/hg");
+var external_react_slick_default = /*#__PURE__*/__webpack_require__.n(external_react_slick_);
+
+// EXTERNAL MODULE: ./node_modules/slick-carousel/slick/slick.css
+var slick = __webpack_require__("tyWD");
+
+// EXTERNAL MODULE: ./node_modules/slick-carousel/slick/slick-theme.css
+var slick_theme = __webpack_require__("K7k0");
+
 // EXTERNAL MODULE: ./utils/get-media-source.ts + 1 modules
 var get_media_source = __webpack_require__("ip4w");
 
 // CONCATENATED MODULE: ./components/carousels/Carousel.tsx
 
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
-Carousel.defaultProps = {
-  media: []
-};
-const Carousel_classes = {
-  container: `
-    md:w-full
-    h-full
-    md:flex
-    md:flex-row
-    md:flex-nowrap
-    md:justify-center
-    md:items-center
-    relative
-  `,
-  controls: {
-    container: `
-      absolute
-      bg-bse
-      bg-opacity-75
-      bottom-0
-      flex
-      flex-nowrap
-      flex-row
-      right-0
-    `,
-    button: `
-      flex
-      flex-row
-      h-9
-      items-center
-      justify-center
-      md:text-accent
-      md:hover:text-primary
-      w-9
-    `
-  },
-  image: `
-    animate-fadeIn
-    min-h-full
-    min-w-full
-    object-cover
-  `,
-  video: `
-    animate-fadeIn
-    min-h-full
-    min-w-full
-  `
-};
+
+
 function Carousel({
   media
 }) {
-  const {
-    0: file,
-    1: setFile
-  } = Object(external_react_["useState"])(media[0]);
-  const mediaElement = Object(external_react_["useRef"])(null);
-
-  const showPrevious = event => {
-    event.preventDefault();
-    const fileIndex = media.indexOf(file) ? media.indexOf(file) - 1 : media.length - 1;
-    return setFile(media[fileIndex]);
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 1500,
+    cssEase: "linear",
+    pauseOnHover: true,
+    style: {
+      backgroundColor: "#ffffff"
+    }
   };
-
-  const showNext = event => {
-    event.preventDefault();
-    const fileIndex = media.indexOf(file) < media.length - 1 ? media.indexOf(file) + 1 : 0;
-    return setFile(media[fileIndex]);
-  };
-
-  return /*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
-    className: Carousel_classes.container,
-    children: [file && (file.mime.includes('image') ? /*#__PURE__*/Object(jsx_runtime_["jsx"])("img", {
-      ref: mediaElement,
-      src: Object(get_media_source["a" /* default */])(file),
-      alt: file.alternativeText,
-      className: Carousel_classes.image
-    }, file.id) : /*#__PURE__*/Object(jsx_runtime_["jsx"])("video", {
-      ref: mediaElement,
-      autoPlay: true,
-      muted: true,
-      loop: true,
-      className: Carousel_classes.video,
-      children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("source", {
-        src: Object(get_media_source["a" /* default */])(file),
-        type: file.mime
+  return /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_slick_default.a, _objectSpread(_objectSpread({}, settings), {}, {
+    children: media ? media.map(m => /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
+      children: /*#__PURE__*/Object(jsx_runtime_["jsx"])("img", {
+        style: {
+          maxHeight: "75vh",
+          margin: "auto"
+        },
+        src: Object(get_media_source["a" /* default */])(m)
       })
-    }, file.id)), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
-      className: Carousel_classes.controls.container,
-      children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
-        onClick: e => showPrevious(e),
-        className: Carousel_classes.controls.button,
-        children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_feather_["ChevronLeft"], {})
-      }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("a", {
-        onClick: e => showNext(e),
-        className: Carousel_classes.controls.button,
-        children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_feather_["ChevronRight"], {})
-      })]
-    })]
-  });
+    }, "img" + m)) : null
+  }));
 }
 ;
+// EXTERNAL MODULE: external "react-feather"
+var external_react_feather_ = __webpack_require__("NC1Z");
+
 // CONCATENATED MODULE: ./components/controls/QuantitySelector.js
 
 
@@ -792,11 +732,7 @@ QuantitySelector.defaultProps = {
   stock: 1
 };
 /* harmony default export */ var controls_QuantitySelector = (QuantitySelector);
-// EXTERNAL MODULE: ./data/colors.json
-var colors = __webpack_require__("qGP1");
-
 // CONCATENATED MODULE: ./components/controls/VariantSelector.tsx
-
 
 
 
@@ -805,7 +741,7 @@ VariantSelector.defaultProps = {
   state: [],
   variants: []
 };
-const VariantSelector_classes = {
+const classes = {
   container: `
     cursor-pointer
     overflow-hidden
@@ -864,48 +800,30 @@ function VariantSelector({
     setVisible(!visible);
   };
 
-  return /*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
-    onClick: animate,
-    className: VariantSelector_classes.container,
-    children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("ul", {
-      children: [!selectedVariant ? /*#__PURE__*/Object(jsx_runtime_["jsx"])("li", {
-        className: VariantSelector_classes.defaultItem,
-        children: "Selecciona"
-      }) : /*#__PURE__*/Object(jsx_runtime_["jsxs"])("li", {
-        className: VariantSelector_classes.item.container,
-        children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-          style: {
-            backgroundColor: colors[selectedVariant.color.trim().toLowerCase()]
-          },
-          className: VariantSelector_classes.item.colorSwatch
-        }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("small", {
-          className: VariantSelector_classes.item.description,
-          children: [selectedVariant.color, ", ", selectedVariant.size, ", ", selectedVariant.pattern]
-        })]
-      }), visible && variants.filter(variant => variant.stock > 0).map(variant => /*#__PURE__*/Object(jsx_runtime_["jsxs"])("li", {
-        className: VariantSelector_classes.item.container + 'bg-inactive',
-        onClick: () => setSelectedVariant(variant),
-        children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-          className: VariantSelector_classes.item.colorSwatch,
-          style: {
-            backgroundColor: colors[variant.color.trim().toLowerCase()]
-          }
-        }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("small", {
-          className: VariantSelector_classes.item.description,
-          children: [variant.color, ", ", variant.size, ", ", variant.pattern]
-        })]
-      }, variant.id))]
-    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
-      ref: dropdownIcon,
-      className: "absolute right-4 top-2",
-      children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(external_react_feather_["ChevronDown"], {})
+  const handleChange = event => {
+    setSelectedVariant(event.target.value);
+  };
+
+  return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(core_["FormControl"], {
+    variant: "filled",
+    fullWidth: true,
+    children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(core_["InputLabel"], {
+      id: "selectVariantLabel",
+      children: "VARIANTES"
+    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(core_["Select"], {
+      labelId: "selectVariantLabel",
+      id: "selectVariant",
+      value: selectedVariant,
+      onChange: handleChange,
+      label: "VARIANTES",
+      children: variants.filter(variant => variant.stock > 0).map(variant => /*#__PURE__*/Object(jsx_runtime_["jsxs"])(core_["MenuItem"], {
+        value: variant,
+        children: [variant.color, ", ", variant.size, ", ", variant.pattern]
+      }, variant.id))
     })]
   });
 }
 ;
-// EXTERNAL MODULE: external "@material-ui/core"
-var core_ = __webpack_require__("KKbo");
-
 // CONCATENATED MODULE: ./components/dropdowns/Dropdown.tsx
 
 
@@ -1039,69 +957,7 @@ var format_price = __webpack_require__("1sxy");
 
 
 
-const _slug_classes = {
-  container: `
-    h-screen
-    max-w-screen
-    relative
-  `,
-  carousel: `
-    bg-base
-    h-4/6
-    md:absolute
-    md:h-full
-    md:right-12
-    md:rounded-lg
-    md:w-1/2
-    overflow-hidden
-  `,
-  details: `
-    h-11/12
-    overflow-y-scroll
-    pb-20
-    w-full
-  `,
-  information: {
-    container: `
-      bg-bse
-      mt-6
-      md:w-2/5
-      md:absolute
-      md:m-12
-      md:p-12
-      md:bg-base
-      md:shadow
-      md:rounded-2xl
-      md:z-10
-      md:overflow-y-scroll
-      p-7
-      rounded-t-3xl
-      max-w-full
-    `,
-    section: `
-      mb-7
-      w-full
-    `,
-    header: {
-      title: `
-        font-bold
-        font-display
-        mb-2
-        text-2xl
-      `
-    },
-    title: `
-      font-bold
-      mb-2
-    `
-  },
-  addButton: `
-    flex
-    flex-row
-    justify-end
-    mt-12
-  `
-};
+
 function ProductDetailsPage({
   departments,
   product,
@@ -1115,79 +971,83 @@ function ProductDetailsPage({
     0: selectedOffers,
     1: setSelectedOffers
   } = Object(external_react_["useState"])([]);
-  const {
-    0: viewportWidth,
-    1: setViewportWidth
-  } = Object(external_react_["useState"])(0);
-  Object(external_react_["useEffect"])(() => {
-    setViewportWidth(window.innerWidth);
-  }, []);
-  return /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-    className: _slug_classes.container,
-    children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
-      className: _slug_classes.details,
-      children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-        className: _slug_classes.carousel,
-        children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Carousel, {
-          media: product.media
-        })
-      }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
-        className: _slug_classes.information.container,
-        children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
-          className: _slug_classes.information.section,
-          children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
-            className: _slug_classes.information.header.title,
-            children: product.name
-          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
-            className: "mb-6",
-            children: Object(format_price["a" /* default */])('MXN', product.price)
-          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
-            children: product.description
-          })]
-        }), product.variants.length !== 0 && /*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
-          className: _slug_classes.information.section,
-          children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
-            className: _slug_classes.information.title,
-            children: "Variante"
-          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(VariantSelector, {
-            state: [selectedVariant, setSelectedVariant],
-            variants: product.variants
-          })]
-        }), product.offers.length !== 0 && /*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
-          className: _slug_classes.information.section,
-          children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
-            className: _slug_classes.information.title,
-            children: "Ofertas"
-          }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(OffersSelector, {
-            offers: product.offers,
-            state: [selectedOffers, setSelectedOffers]
-          })]
-        }), selectedVariant && /*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
-          className: _slug_classes.information.section,
-          children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("p", {
-            className: _slug_classes.information.title,
-            children: "Cantidad"
-          }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("div", {
-            className: "flex flex-row items-center",
-            children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(controls_QuantitySelector, {
-              stock: selectedVariant.stock
-            }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("small", {
-              className: "ml-4 text-sm text-neutral",
-              children: ["\xA1", selectedVariant.stock, " disponibles!"]
-            })]
-          })]
-        }), product && selectedVariant && /*#__PURE__*/Object(jsx_runtime_["jsx"])("div", {
-          className: _slug_classes.addButton,
-          children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(AddToBagButton, {
-            order: {
-              offers: selectedOffers,
-              product,
-              variant: selectedVariant
-            }
+  return /*#__PURE__*/Object(jsx_runtime_["jsxs"])(core_["Grid"], {
+    container: true,
+    spacing: 2,
+    children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(core_["Grid"], {
+      item: true,
+      xs: 12,
+      md: 6,
+      children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(core_["Card"], {
+        children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(core_["CardContent"], {
+          children: /*#__PURE__*/Object(jsx_runtime_["jsxs"])(core_["Grid"], {
+            container: true,
+            spacing: 2,
+            children: [/*#__PURE__*/Object(jsx_runtime_["jsxs"])(core_["Grid"], {
+              item: true,
+              xs: 12,
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(core_["Typography"], {
+                variant: "h6",
+                children: product.name
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(core_["Typography"], {
+                variant: "h4",
+                children: Object(format_price["a" /* default */])('MXN', product.price)
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(core_["Typography"], {
+                variant: "subtitle1",
+                gutterBottom: true,
+                children: product.description
+              })]
+            }), product.variants.length !== 0 ? /*#__PURE__*/Object(jsx_runtime_["jsx"])(core_["Grid"], {
+              item: true,
+              xs: 12,
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(VariantSelector, {
+                state: [selectedVariant, setSelectedVariant],
+                variants: product.variants
+              })
+            }) : null, product.offers.length !== 0 ? /*#__PURE__*/Object(jsx_runtime_["jsxs"])(core_["Grid"], {
+              item: true,
+              xs: 12,
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(core_["Typography"], {
+                variant: "body2",
+                children: "OFERTAS"
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(OffersSelector, {
+                offers: product.offers,
+                state: [selectedOffers, setSelectedOffers]
+              })]
+            }) : null, selectedVariant ? /*#__PURE__*/Object(jsx_runtime_["jsxs"])(core_["Grid"], {
+              item: true,
+              xs: 12,
+              children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])(core_["Typography"], {
+                variant: "body2",
+                children: "CANTIDAD"
+              }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(controls_QuantitySelector, {
+                stock: selectedVariant.stock
+              }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])(core_["Typography"], {
+                variant: "caption",
+                children: ["\xA1", selectedVariant.stock, " disponibles!"]
+              })]
+            }) : null, product && selectedVariant ? /*#__PURE__*/Object(jsx_runtime_["jsx"])(core_["Grid"], {
+              item: true,
+              xs: 12,
+              children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(AddToBagButton, {
+                order: {
+                  offers: selectedOffers,
+                  product,
+                  variant: selectedVariant
+                }
+              })
+            }) : null]
           })
-        })]
-      })]
-    })
+        })
+      })
+    }), /*#__PURE__*/Object(jsx_runtime_["jsx"])(core_["Grid"], {
+      item: true,
+      xs: 12,
+      md: 6,
+      children: /*#__PURE__*/Object(jsx_runtime_["jsx"])(Carousel, {
+        media: product.media
+      })
+    })]
   });
 }
 ;

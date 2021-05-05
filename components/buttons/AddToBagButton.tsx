@@ -4,6 +4,7 @@ import IPaymentOrder from '@/models/IPaymentOrder';
 import {useContext} from 'react'
 import OrderContext from '@/context/OrderContext';
 import {useSnackbar} from 'notistack'
+import {Button} from '@material-ui/core'
 
 AddToBagButton.propTypes = {
   order: PropTypes.object
@@ -11,27 +12,7 @@ AddToBagButton.propTypes = {
 
 AddToBagButton.defaultProps = {
   order: null
-};
-
-const classes = {
-  container: `
-    bg-accent
-    cursor-pointer
-    flex
-    flex-row
-    flex-nowrap
-    items-center
-    hover:bg-inactive
-    hover:text-primary
-    justify-center
-    font-bold
-    px-4
-    py-3
-    rounded-lg
-    text-bse
-    shadow
-  `
-};
+}
 
 export default function AddToBagButton({ order }: { order: IPaymentOrder }) {
 
@@ -46,10 +27,9 @@ export default function AddToBagButton({ order }: { order: IPaymentOrder }) {
   };
 
   return (
-    <a onClick={(e) => handlerClick(e)} className={classes.container}>
-      <span className="mr-3"><ShoppingBag /></span>
-      <span>Añadir a la bolsa</span>
-    </a>
+    <Button onClick={(e) => handlerClick(e)} fullWidth variant="contained" color="primary">
+      AÑADIR A LA BOLSA
+    </Button>
   );
 };
 

@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import { ChevronDown } from 'react-feather';
 
 import colors from '@/data/colors.json';
+import {FormControl, InputLabel, Select, MenuItem} from '@material-ui/core'
 
 VariantSelector.propTypes = {
   state: PropTypes.array,
@@ -68,56 +69,28 @@ export default function VariantSelector({ state, variants }) {
     setVisible(!visible);
   };
 
+  const handleChange = (event) => {
+    setSelectedVariant(event.target.value);
+  };
+
   return (
-    <div onClick={animate} className={classes.container}>
-      <ul>
+    <FormControl variant="filled" fullWidth>
+      <InputLabel id="selectVariantLabel">VARIANTES</InputLabel>
+      <Select
+        labelId="selectVariantLabel"
+        id="selectVariant"
+        value={selectedVariant}
+        onChange={handleChange}
+        label="VARIANTES"
+      >
         {
-          !selectedVariant
-            ?
-            <li className={classes.defaultItem}>
-              Selecciona
-            </li>
-            :
-            <li className={classes.item.container}>
-              <div style={{
-                backgroundColor: colors[selectedVariant.color.trim().toLowerCase()]
-              }}
-                className={classes.item.colorSwatch}
-              ></div>
-
-              <small className={classes.item.description}>
-                {selectedVariant.color}, {selectedVariant.size}, {selectedVariant.pattern}
-              </small>
-            </li>
-        }
-
-        {
-          visible &&
           variants.filter((variant) => variant.stock > 0).map((variant) => (
-            <li
-              key={variant.id}
-              className={classes.item.container + 'bg-inactive'}
-              onClick={() => setSelectedVariant(variant)}
-            >
-              <div
-                className={classes.item.colorSwatch}
-                style={{ backgroundColor: colors[variant.color.trim().toLowerCase()] }}
-              ></div>
-
-              <small className={classes.item.description}>
-                {variant.color}, {variant.size}, {variant.pattern}
-              </small>
-            </li>
+            <MenuItem key={variant.id} value={variant}>{variant.color}, {variant.size}, {variant.pattern}</MenuItem>
           ))
         }
-      </ul>
-
-
-      <span ref={dropdownIcon} className="absolute right-4 top-2">
-        <ChevronDown />
-      </span>
-
-    </div>
+        
+      </Select>
+    </FormControl>
   );
 };
 
