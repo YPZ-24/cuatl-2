@@ -671,7 +671,7 @@ function FilteredProductsPage({
   const getNewPage = async () => {
     const newPage = await Object(_actions_fetch_products__WEBPACK_IMPORTED_MODULE_3__[/* getProductsPage */ "b"])(apolloClient, {
       start: page.data.length,
-      limit: _config_globals__WEBPACK_IMPORTED_MODULE_6__[/* PAGE_LIMIT */ "e"],
+      limit: _config_globals__WEBPACK_IMPORTED_MODULE_6__[/* PAGE_LIMIT */ "d"],
       query
     });
     setPage({
@@ -704,7 +704,7 @@ async function getServerSideProps({
   const apolloClient = Object(_lib_apollo_client__WEBPACK_IMPORTED_MODULE_7__[/* initializeApolloClient */ "a"])();
   const initialProducts = await Object(_actions_fetch_products__WEBPACK_IMPORTED_MODULE_3__[/* getProductsPage */ "b"])(apolloClient, {
     start: 0,
-    limit: _config_globals__WEBPACK_IMPORTED_MODULE_6__[/* PAGE_LIMIT */ "e"],
+    limit: _config_globals__WEBPACK_IMPORTED_MODULE_6__[/* PAGE_LIMIT */ "d"],
     query
   });
   const departments = await Object(_actions_fetch_departments__WEBPACK_IMPORTED_MODULE_2__[/* getDepartments */ "a"])(apolloClient);
@@ -1145,18 +1145,16 @@ module.exports = require("next/dist/next-server/lib/router/utils/get-asset-path-
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return API_DOMAIN; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return PAGE_LIMIT; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return AUTH_FACEBOOK_CALLBACK; });
-/* unused harmony export AUTH_FACEBOOK_URL */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return AUTH_GOOGLE_CALLBACK; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return AUTH_GOOGLE_URL; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return STRIPE_PUBLISHED_KEY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return PAGE_LIMIT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return AUTH_GOOGLE_CALLBACK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return AUTH_GOOGLE_URL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return STRIPE_PUBLISHED_KEY; });
 const API_DOMAIN = "https://cuatl.shop/api";
-const PAGE_LIMIT = 12;
-const AUTH_FACEBOOK_CALLBACK = `${API_DOMAIN}/auth/facebook/callback`;
-const AUTH_FACEBOOK_URL = `${API_DOMAIN}/connect/facebook`; //const AUTH_GOOGLE_CALLBACK = `http://cuatl.shop/api/connect/google/callback`;
+const PAGE_LIMIT = 12; //const AUTH_FACEBOOK_CALLBACK = `${API_DOMAIN}/auth/facebook/callback`;
+//const AUTH_FACEBOOK_URL = `${API_DOMAIN}/connect/facebook`;
+//const AUTH_GOOGLE_CALLBACK = `http://cuatl.shop/api/connect/google/callback`;
 
-const AUTH_GOOGLE_URL = `http://cuatl.shop/api/connect/google`;
+const AUTH_GOOGLE_URL = `https://cuatl.shop/api/connect/google`;
 const AUTH_GOOGLE_CALLBACK = `${API_DOMAIN}/auth/google/callback`;
 const STRIPE_PUBLISHED_KEY = "pk_test_51Hw15gJ4rvPOyPXnQ6Rjf7X4RxmsSBqvTVy3h3Bfwdo2WddlWAgC64bzfHeQbn4V5jJpPrJ7eHeWrGQMWOlRzW8700mrQLCJpL";
 

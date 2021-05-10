@@ -198,7 +198,7 @@ var globals = __webpack_require__("VS8K");
 // CONCATENATED MODULE: ./actions/fetch-sessions.ts
 
 const getSession = async token => {
-  const url = token.includes('id_token') ? globals["c" /* AUTH_GOOGLE_CALLBACK */] : globals["b" /* AUTH_FACEBOOK_CALLBACK */];
+  const url = token.includes('id_token') ? globals["b" /* AUTH_GOOGLE_CALLBACK */] : '';
   let response;
   response = await fetch(url + token);
   const sessionData = await response.json();
@@ -309,18 +309,16 @@ module.exports = require("@material-ui/core");
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return API_DOMAIN; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return PAGE_LIMIT; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return AUTH_FACEBOOK_CALLBACK; });
-/* unused harmony export AUTH_FACEBOOK_URL */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return AUTH_GOOGLE_CALLBACK; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return AUTH_GOOGLE_URL; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return STRIPE_PUBLISHED_KEY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return PAGE_LIMIT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return AUTH_GOOGLE_CALLBACK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return AUTH_GOOGLE_URL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return STRIPE_PUBLISHED_KEY; });
 const API_DOMAIN = "https://cuatl.shop/api";
-const PAGE_LIMIT = 12;
-const AUTH_FACEBOOK_CALLBACK = `${API_DOMAIN}/auth/facebook/callback`;
-const AUTH_FACEBOOK_URL = `${API_DOMAIN}/connect/facebook`; //const AUTH_GOOGLE_CALLBACK = `http://cuatl.shop/api/connect/google/callback`;
+const PAGE_LIMIT = 12; //const AUTH_FACEBOOK_CALLBACK = `${API_DOMAIN}/auth/facebook/callback`;
+//const AUTH_FACEBOOK_URL = `${API_DOMAIN}/connect/facebook`;
+//const AUTH_GOOGLE_CALLBACK = `http://cuatl.shop/api/connect/google/callback`;
 
-const AUTH_GOOGLE_URL = `http://cuatl.shop/api/connect/google`;
+const AUTH_GOOGLE_URL = `https://cuatl.shop/api/connect/google`;
 const AUTH_GOOGLE_CALLBACK = `${API_DOMAIN}/auth/google/callback`;
 const STRIPE_PUBLISHED_KEY = "pk_test_51Hw15gJ4rvPOyPXnQ6Rjf7X4RxmsSBqvTVy3h3Bfwdo2WddlWAgC64bzfHeQbn4V5jJpPrJ7eHeWrGQMWOlRzW8700mrQLCJpL";
 
@@ -508,7 +506,7 @@ function AuthenticationPage({
             align: "center",
             children: "Ingresa y disfruta una gran experiencia"
           }), /*#__PURE__*/Object(jsx_runtime_["jsxs"])("a", {
-            href: globals["d" /* AUTH_GOOGLE_URL */],
+            href: globals["c" /* AUTH_GOOGLE_URL */],
             className: styles.tailwind.mainContent.loginForm.button.container + styles.tailwind.generic.google,
             children: [/*#__PURE__*/Object(jsx_runtime_["jsx"])("span", {
               className: styles.tailwind.mainContent.loginForm.button.icon.container,
