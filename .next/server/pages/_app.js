@@ -688,7 +688,7 @@ module.exports = require("@material-ui/core/Container");
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return AUTH_GOOGLE_CALLBACK; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return AUTH_GOOGLE_URL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return STRIPE_PUBLISHED_KEY; });
-const API_DOMAIN = "http://165.227.199.69:1337";
+const API_DOMAIN = "http://cuatl.shop/api";
 const PAGE_LIMIT = 12;
 const AUTH_FACEBOOK_CALLBACK = `${API_DOMAIN}/auth/facebook/callback`;
 const AUTH_FACEBOOK_URL = `${API_DOMAIN}/connect/facebook`; //const AUTH_GOOGLE_CALLBACK = `http://cuatl.shop/api/connect/google/callback`;
