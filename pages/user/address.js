@@ -8,6 +8,7 @@ import OrderContext from '@/context/OrderContext';
 import { STRIPE_PUBLISHED_KEY } from '@/config/globals';
 import { loadStripe } from '@stripe/stripe-js';
 import MyBackdrop from '../../components/MyBackdrop'
+import {useSnackbar} from 'notistack'
 
 const stripePromise = loadStripe(STRIPE_PUBLISHED_KEY);
 
@@ -15,16 +16,23 @@ function address() {
 
     const { order } = useContext(OrderContext);
     const [open, setOpen] = useState(false)
+    const { enqueueSnackbar } = useSnackbar();
 
     const handleSubmit = async (values)=>{
         setOpen(true)
         if(!values.noExt) values.noExt = 0
-        const stripe = await stripePromise;
-        const address = await myFetch({method: 'POST', path: `/addresses`, body: values})
-        const session = await myFetch({method: 'POST', path: '/orders', body: {order, address: address.id}})
-        const result = await stripe.redirectToCheckout({
-          sessionId: session.id
-        });
+        if(!values.noInt) values.noInt = 0
+        try{
+            if(!values.noExt) values.noExt = 0
+            const stripe = await stripePromise;
+            const address = await myFetch({method: 'POST', path: `/addresses`, body: values})
+            const session = await myFetch({method: 'POST', path: '/orders', body: {order, address: address.id}})
+            const result = await stripe.redirectToCheckout({
+                sessionId: session.id
+            });
+        }catch(e){
+            enqueueSnackbar("Algo salio mal")
+        }
         setOpen(false)
     }
 
@@ -38,20 +46,20 @@ function address() {
                     delegacion: '',
                     colonia: '',
                     calle: '',
-                    noInt: 0,
-                    noExt: 0,
-                    cp: 0,
+                    noInt: '',
+                    noExt: '',
+                    cp: '',
                 }}
                 onSubmit = {(values)=>handleSubmit(values)}
                 validationSchema = {
                     Yup.object().shape({
-                        estado: Yup.string().required(),
-                        delegacion: Yup.string().required(),
-                        colonia: Yup.string().required(),
-                        calle: Yup.string().required(),
-                        noInt: Yup.number().min(1).required(),
-                        noExt: Yup.number(),
-                        cp: Yup.number().min(1).required(),
+                        estado: Yup.string().required('Debes ingresar un estado'),
+                        delegacion: Yup.string().required('Debes ingresar una delegacion'),
+                        colonia: Yup.string().required('Debes ingresar una colonia'),
+                        calle: Yup.string().required('Debes ingresar una calle'),
+                        noInt: Yup.number().typeError('Debe ser un número').min(0, 'Debe ser un no. int. válido'),
+                        noExt: Yup.number().typeError('Debe ser un número').min(0, 'Debe ser un no. ext. válido'),
+                        cp: Yup.number().typeError('Debe ser un número').min(1, 'Debe ser un C.P. válido').required('Debes agregar un C.P.'),
                     })
                 }
                 >

@@ -29,7 +29,8 @@ async function myFetch ({method, path, body}){
         data = await res.json();
         return data;
     }catch(e){
-        //e.message = "Fetch failed"
+        console.log(e)
+        e.message = "Algo salio mal"
         return e
     }
 }
