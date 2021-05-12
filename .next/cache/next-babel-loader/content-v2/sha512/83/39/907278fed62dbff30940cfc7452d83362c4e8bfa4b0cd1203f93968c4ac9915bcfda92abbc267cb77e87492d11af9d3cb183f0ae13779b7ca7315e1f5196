@@ -1,1 +1,0 @@
-{"ast":null,"code":"var isTouchEnabled = function isTouchEnabled() {\n  return 'touchstart' in window || navigator.maxTouchPoints;\n};\n\nexport default isTouchEnabled;","map":null,"metadata":{},"sourceType":"module"}

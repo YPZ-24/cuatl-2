@@ -29,6 +29,7 @@ function address() {
                 sessionId: session.id
             });
         }catch(e){
+            console.log(e)
             enqueueSnackbar("Algo salio mal")
         }
         setOpen(false)
