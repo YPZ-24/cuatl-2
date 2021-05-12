@@ -38,7 +38,7 @@ function address() {
     return (
         <Container maxWidth="xs">
             <MyBackdrop open={open} />
-            <Typography variant="h5" align="center">DIRECCIÓN</Typography>
+            <Typography gutterBottom variant="h4" align="center">DIRECCIÓN</Typography>
             <Formik
                 initialValues = {{
                     estado: '',
@@ -70,7 +70,9 @@ function address() {
                     <MyInput label="No. Interior" name="noInt" />
                     <MyInput label="No. Exterior" name="noExt" />
                     <MyInput label="Código Postal" name="cp" />
-                    <Button fullWidth type="submit" variant="contained" color="primary">
+                    <Button style={{
+                        marginTop: '30px'
+                    }} fullWidth type="submit" variant="contained" color="primary">
                         SAVE
                     </Button>
                 </Form>
