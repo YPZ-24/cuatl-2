@@ -20,8 +20,6 @@ function address() {
 
     const handleSubmit = async (values)=>{
         setOpen(true)
-        if(!values.noExt) values.noExt = 0
-        if(!values.noInt) values.noInt = 0
         try{
             if(!values.noExt) values.noExt = 0
             const stripe = await stripePromise;
@@ -57,8 +55,8 @@ function address() {
                         delegacion: Yup.string().required('Debes ingresar una delegacion'),
                         colonia: Yup.string().required('Debes ingresar una colonia'),
                         calle: Yup.string().required('Debes ingresar una calle'),
-                        noInt: Yup.number().typeError('Debe ser un número').min(0, 'Debe ser un no. int. válido'),
-                        noExt: Yup.number().typeError('Debe ser un número').min(0, 'Debe ser un no. ext. válido'),
+                        noInt: Yup.string(),
+                        noExt: Yup.string(),
                         cp: Yup.number().typeError('Debe ser un número').min(1, 'Debe ser un C.P. válido').required('Debes agregar un C.P.'),
                     })
                 }
