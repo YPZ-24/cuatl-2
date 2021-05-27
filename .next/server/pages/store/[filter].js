@@ -631,31 +631,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const classes = {
-  container: `
-    h-screen
-    max-w-screen
-  `,
-  gallery: {
-    container: `
-      h-3/4
-      md:h-auto
-      md:overflow-visible
-      overflow-y-auto
-      px-7
-      py-12
-      top-0
-      w-full
-    `,
-    loadButton: `
-      flex
-      flex-nowrap
-      flex-row
-      justify-center
-      my-12
-    `
-  }
-};
+
 function FilteredProductsPage({
   initialProducts,
   departments,
@@ -681,20 +657,12 @@ function FilteredProductsPage({
     });
   };
 
-  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
-    className: classes.container,
-    children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])("div", {
-      className: classes.gallery.container,
-      children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_components_galleries_ProductsGallery__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"], {
-        products: page.data
-      }), /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])("div", {
-        className: classes.gallery.loadButton,
-        children: /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_components_buttons_LoadMoreButton__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
-          disabled: !page.previousData.length,
-          fetcher: getNewPage
-        })
-      })]
-    })
+  return /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsxs"])(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["Fragment"], {
+    children: [/*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_components_galleries_ProductsGallery__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"], {
+      products: page.data
+    }), page.previousData.length === _config_globals__WEBPACK_IMPORTED_MODULE_6__[/* PAGE_LIMIT */ "d"] ? /*#__PURE__*/Object(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__["jsx"])(_components_buttons_LoadMoreButton__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"], {
+      fetcher: getNewPage
+    }) : null]
   });
 }
 ;
@@ -1408,7 +1376,7 @@ function Link(props) {
 
   const p = props.prefetch !== false;
   const router = (0, _router2.useRouter)();
-  const pathname = router && router.pathname || '/';
+  const pathname = router && router.asPath || '/';
 
   const {
     href,
@@ -1740,7 +1708,15 @@ function omitParmsFromQuery(query, params) {
 
 function resolveHref(currentPath, href, resolveAs) {
   // we use a dummy base url for relative urls
-  const base = new URL(currentPath, 'http://n');
+  let base;
+
+  try {
+    base = new URL(currentPath, 'http://n');
+  } catch (_) {
+    // fallback to / for invalid asPath values e.g. //
+    base = new URL('/', 'http://n');
+  }
+
   const urlAsString = typeof href === 'string' ? href : (0, _utils.formatWithValidation)(href); // Return because it cannot be routed by the Next.js router
 
   if (!isLocalURL(urlAsString)) {
@@ -1784,14 +1760,14 @@ function stripOrigin(url) {
 function prepareUrlAs(router, url, as) {
   // If url and as provided as an object representation,
   // we'll format them into the string version here.
-  let [resolvedHref, resolvedAs] = resolveHref(router.pathname, url, true);
+  let [resolvedHref, resolvedAs] = resolveHref(router.asPath, url, true);
   const origin = (0, _utils.getLocationOrigin)();
   const hrefHadOrigin = resolvedHref.startsWith(origin);
   const asHadOrigin = resolvedAs && resolvedAs.startsWith(origin);
   resolvedHref = stripOrigin(resolvedHref);
   resolvedAs = resolvedAs ? stripOrigin(resolvedAs) : resolvedAs;
   const preparedUrl = hrefHadOrigin ? resolvedHref : addBasePath(resolvedHref);
-  const preparedAs = as ? stripOrigin(resolveHref(router.pathname, as)) : resolvedAs || resolvedHref;
+  const preparedAs = as ? stripOrigin(resolveHref(router.asPath, as)) : resolvedAs || resolvedHref;
   return {
     url: preparedUrl,
     as: asHadOrigin ? preparedAs : addBasePath(preparedAs)
@@ -2086,9 +2062,10 @@ class Router {
     if (!isLocalURL(url)) {
       window.location.href = url;
       return false;
-    } // for static pages with query params in the URL we delay
-    // marking the router ready until after the query is updated
+    }
 
+    const shouldResolveHref = url === as || options._h; // for static pages with query params in the URL we delay
+    // marking the router ready until after the query is updated
 
     if (options._h) {
       this.isReady = true;
@@ -2180,7 +2157,7 @@ class Router {
 
     pathname = pathname ? (0, _normalizeTrailingSlash.removePathTrailingSlash)(delBasePath(pathname)) : pathname;
 
-    if (pathname !== '/_error') {
+    if (shouldResolveHref && pathname !== '/_error') {
       if (false) {} else {
         parsed.pathname = resolveDynamicRoute(pathname, pages);
 
@@ -2435,7 +2412,10 @@ class Router {
       {
         pathname,
         query,
-        asPath: as
+        asPath: as,
+        locale: this.locale,
+        locales: this.locales,
+        defaultLocale: this.defaultLocale
       }));
       routeInfo.props = props;
       this.components[route] = routeInfo;

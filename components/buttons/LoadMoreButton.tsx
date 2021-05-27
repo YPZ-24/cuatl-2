@@ -1,6 +1,4 @@
 import PropTypes from 'prop-types';
-import { useRef } from 'react';
-import { RefreshCw } from 'react-feather';
 import Button from '@material-ui/core/Button'
 import IconCached from '@material-ui/icons/Cached'
 

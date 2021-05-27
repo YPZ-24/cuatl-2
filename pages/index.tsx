@@ -32,7 +32,7 @@ export default function HomePage({ initialProducts }) {
   return (
     <>
       <ProductsGallery products={page.data} />
-      {!page.previousData.length ? 
+      {page.previousData.length===PAGE_LIMIT ? 
         <LoadMoreButton
           fetcher={getNewPage}
         />
